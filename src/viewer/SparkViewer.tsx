@@ -10,7 +10,7 @@ import {
 } from 'react';
 import TextBox from '../components/TextBox';
 import { SelectedFileContext } from '../pages/_app';
-import { ExportCallback } from './common/logic/export';
+import { ExportCallback, ExportTxtCallback, createExportTxtCallback } from './common/logic/export';
 import {
     fetchFromBytebin,
     fetchFromFile,
@@ -51,6 +51,7 @@ export default function SparkViewer() {
     const [data, setData] = useState<SamplerData | HeapData | HealthData>();
     const [metadata, setMetadata] = useState<SparkMetadata>();
     const [exportCallback, setExportCallback] = useState<ExportCallback>();
+    const [exportTxtCallback, setExportTxtCallback] = useState<ExportTxtCallback>();
 
     const fetchUpdatedData = useCallback(
         async (payloadId: string) => {
@@ -63,6 +64,7 @@ export default function SparkViewer() {
             const [data] = parse(type, buf);
             setData(data);
             setMetadata(data.metadata);
+            setExportTxtCallback(() => createExportTxtCallback(payloadId, data, type));
         },
         [setExportCallback, setData]
     );
@@ -91,6 +93,7 @@ export default function SparkViewer() {
                 setData(data);
                 setMetadata(data.metadata);
                 setStatus(status);
+                setExportTxtCallback(() => createExportTxtCallback(code, data, result.type));
             } catch (e) {
                 console.log(e);
                 setStatus(FAILED_DATA);
@@ -121,6 +124,7 @@ export default function SparkViewer() {
                         metadata={metadata as SamplerMetadata}
                         setMetadata={setMetadata}
                         exportCallback={exportCallback!}
+                        exportTxtCallback={exportTxtCallback!}
                     />
                 </Suspense>
             );
@@ -131,6 +135,7 @@ export default function SparkViewer() {
                         data={data as HeapData}
                         metadata={metadata as HeapMetadata}
                         exportCallback={exportCallback!}
+                        exportTxtCallback={exportTxtCallback!}
                     />
                 </Suspense>
             );
@@ -141,6 +146,7 @@ export default function SparkViewer() {
                         data={data as HealthData}
                         metadata={metadata as HealthMetadata}
                         exportCallback={exportCallback!}
+                        exportTxtCallback={exportTxtCallback!}
                     />
                 </Suspense>
             );

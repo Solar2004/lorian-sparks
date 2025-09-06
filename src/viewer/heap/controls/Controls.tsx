@@ -1,9 +1,10 @@
 import { Dispatch, SetStateAction } from 'react';
 import styles from '../../../style/controls.module.scss';
 import ExportButton from '../../common/components/controls/ExportButton';
+import ExportTxtButton from '../../common/components/controls/ExportTxtButton';
 import ShowInfoButton from '../../common/components/controls/ShowInfoButton';
 import { MetadataToggle } from '../../common/hooks/useMetadataToggle';
-import { ExportCallback } from '../../common/logic/export';
+import { ExportCallback, ExportTxtCallback } from '../../common/logic/export';
 import { HeapMetadata } from '../../proto/spark_pb';
 import HeapTitle from '../HeapTitle';
 import SearchBar from './SearchBar';
@@ -14,6 +15,7 @@ export interface ControlsProps {
     searchQuery: string;
     setSearchQuery: Dispatch<SetStateAction<string>>;
     exportCallback: ExportCallback;
+    exportTxtCallback: ExportTxtCallback;
 }
 
 export default function Controls({
@@ -22,6 +24,7 @@ export default function Controls({
     searchQuery,
     setSearchQuery,
     exportCallback,
+    exportTxtCallback,
 }: ControlsProps) {
     return (
         <div className={styles.controls}>
@@ -31,6 +34,7 @@ export default function Controls({
                 metadataToggle={metadataToggle}
             />
             <ExportButton exportCallback={exportCallback} />
+            <ExportTxtButton exportTxtCallback={exportTxtCallback} />
             <SearchBar
                 searchQuery={searchQuery}
                 setSearchQuery={setSearchQuery}

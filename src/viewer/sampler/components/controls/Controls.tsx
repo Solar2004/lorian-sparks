@@ -1,9 +1,10 @@
 import { Dispatch, SetStateAction } from 'react';
 import styles from '../../../../style/controls.module.scss';
 import ExportButton from '../../../common/components/controls/ExportButton';
+import ExportTxtButton from '../../../common/components/controls/ExportTxtButton';
 import ShowInfoButton from '../../../common/components/controls/ShowInfoButton';
 import { MetadataToggle } from '../../../common/hooks/useMetadataToggle';
-import { ExportCallback } from '../../../common/logic/export';
+import { ExportCallback, ExportTxtCallback } from '../../../common/logic/export';
 import { SamplerMetadata } from '../../../proto/spark_pb';
 import { SearchQuery } from '../../hooks/useSearchQuery';
 import { SocketBinding } from '../../hooks/useSocketBindings';
@@ -24,6 +25,7 @@ export interface ControlsProps {
     metadata: SamplerMetadata;
     metadataToggle: MetadataToggle;
     exportCallback: ExportCallback;
+    exportTxtCallback: ExportTxtCallback;
     showSettings: boolean;
     setShowSettings: Dispatch<SetStateAction<boolean>>;
     view: View;
@@ -45,6 +47,7 @@ export default function Controls({
     metadata,
     metadataToggle,
     exportCallback,
+    exportTxtCallback,
     showSettings,
     setShowSettings,
     view,
@@ -86,6 +89,7 @@ export default function Controls({
                     />
                     <FlameButton data={data} setFlameData={setFlameData} />
                     <ExportButton exportCallback={exportCallback} />
+                    <ExportTxtButton exportTxtCallback={exportTxtCallback} />
                     <SearchBar searchQuery={searchQuery} />
                 </>
             ) : (

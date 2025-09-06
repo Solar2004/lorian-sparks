@@ -1,0 +1,528 @@
+.recommendationsContainer {
+  margin: 1rem 0;
+  border: 1px solid #e1e4e8;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #ffffff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  
+  // Special styling to make mod recommendations stand out
+  border-left: 4px solid #0366d6;
+  
+  &:hover {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  }
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  border-bottom: 1px solid #e1e4e8;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+
+  &:hover {
+    background: linear-gradient(135deg, #f0f3f6 0%, #e1e5e9 100%);
+  }
+
+  h3 {
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #0366d6;
+    
+    &::before {
+      content: '';
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      background: #0366d6;
+      border-radius: 50%;
+      margin-right: 0.5rem;
+    }
+  }
+}
+
+.headerInfo {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.count {
+  color: #28a745;
+  font-weight: 600;
+}
+
+.noRecommendations {
+  color: #6a737d;
+  font-style: italic;
+}
+
+.expandIcon {
+  color: #6a737d;
+  font-size: 0.8rem;
+  transition: transform 0.2s ease;
+}
+
+.loading {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #6a737d;
+  font-size: 0.9rem;
+  font-style: italic;
+}
+
+.loadingSpinner {
+  font-size: 1rem;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.error {
+  color: #d73a49;
+  font-size: 0.9rem;
+  font-style: italic;
+}
+
+.content {
+  padding: 1.5rem;
+}
+
+.platformInfo {
+  margin-bottom: 1.5rem;
+  padding: 0.75rem;
+  background: #f6f8fa;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  
+  strong {
+    color: #24292e;
+  }
+}
+
+.version {
+  color: #6a737d;
+  margin-left: 0.5rem;
+}
+
+.modGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.modCard {
+  padding: 1.25rem;
+  background: #ffffff;
+  border: 1px solid #e1e4e8;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    border-color: #0366d6;
+  }
+}
+
+.modHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+  gap: 1rem;
+}
+
+.modName {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #24292e;
+  font-family: 'SFMono-Regular', 'Consolas', 'Liberation Mono', 'Menlo', monospace;
+  line-height: 1.3;
+}
+
+.modCategory {
+  padding: 0.25rem 0.5rem;
+  border-radius: 12px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+  flex-shrink: 0;
+
+  &.performance {
+    background: #d1ecf1;
+    color: #0c5460;
+    border: 1px solid #bee5eb;
+  }
+
+  &.bugfix {
+    background: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+  }
+
+  &.enhancement {
+    background: #cce5ff;
+    color: #004085;
+    border: 1px solid #b8daff;
+  }
+
+  &.alternative {
+    background: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+  }
+}
+
+.modDescription {
+  font-size: 0.9rem;
+  color: #586069;
+  line-height: 1.5;
+  margin-bottom: 1rem;
+}
+
+.modReason {
+  font-size: 0.85rem;
+  color: #24292e;
+  margin-bottom: 0.75rem;
+  line-height: 1.4;
+  
+  strong {
+    color: #0366d6;
+  }
+}
+
+.modReplaces {
+  font-size: 0.8rem;
+  color: #d73a49;
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+  background: #ffeef0;
+  border-radius: 4px;
+  border-left: 3px solid #d73a49;
+
+  strong {
+    color: #d73a49;
+  }
+}
+
+.modMeta {
+  margin-bottom: 1rem;
+  font-size: 0.8rem;
+  
+  > div {
+    margin-bottom: 0.25rem;
+  }
+}
+
+.modPlatforms, .modVersions {
+  color: #6a737d;
+  
+  strong {
+    color: #586069;
+  }
+}
+
+.modLinks {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.modLink {
+  padding: 0.5rem 1rem;
+  background: #0366d6;
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  
+  &:hover {
+    background: #0256cc;
+    text-decoration: none;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(3, 102, 214, 0.3);
+  }
+}
+
+.moreRecommendations {
+  text-align: center;
+  color: #6a737d;
+  font-style: italic;
+  font-size: 0.9rem;
+  padding: 1rem;
+  background: #f6f8fa;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+}
+
+.noRecommendationsContent {
+  text-align: center;
+  padding: 2rem;
+}
+
+.noRecommendationsIcon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  opacity: 0.6;
+}
+
+.noRecommendationsText {
+  color: #586069;
+  line-height: 1.6;
+  
+  strong {
+    color: #24292e;
+    font-size: 1.1rem;
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+  
+  p {
+    margin: 0.75rem 0;
+    font-size: 0.9rem;
+  }
+}
+
+.helpLinks {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 1.5rem;
+  flex-wrap: wrap;
+  
+  a {
+    color: #0366d6;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.9rem;
+    padding: 0.5rem 1rem;
+    border: 1px solid #0366d6;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+    
+    &:hover {
+      background: #0366d6;
+      color: white;
+      text-decoration: none;
+    }
+  }
+}
+
+.footer {
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e1e4e8;
+  color: #6a737d;
+  font-size: 0.8rem;
+  line-height: 1.4;
+  text-align: center;
+
+  a {
+    color: #0366d6;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+// Responsive design
+@media (max-width: 768px) {
+  .modGrid {
+    grid-template-columns: 1fr;
+  }
+  
+  .modHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  
+  .helpLinks {
+    flex-direction: column;
+    align-items: center;
+    
+    a {
+      width: 200px;
+      text-align: center;
+    }
+  }
+}
+
+// Dark mode support
+@media (prefers-color-scheme: dark) {
+  .recommendationsContainer {
+    background: #0d1117;
+    border-color: #30363d;
+    border-left-color: #58a6ff;
+  }
+
+  .header {
+    background: linear-gradient(135deg, #161b22 0%, #21262d 100%);
+    border-color: #30363d;
+
+    &:hover {
+      background: linear-gradient(135deg, #21262d 0%, #2d333b 100%);
+    }
+
+    h3 {
+      color: #58a6ff;
+      
+      &::before {
+        background: #58a6ff;
+      }
+    }
+  }
+
+  .count {
+    color: #46d160;
+  }
+
+  .noRecommendations {
+    color: #8b949e;
+  }
+
+  .content {
+    color: #e6edf3;
+  }
+
+  .platformInfo {
+    background: #161b22;
+    
+    strong {
+      color: #f0f6fc;
+    }
+  }
+
+  .version {
+    color: #8b949e;
+  }
+
+  .modCard {
+    background: #161b22;
+    border-color: #30363d;
+    
+    &:hover {
+      border-color: #58a6ff;
+    }
+  }
+
+  .modName {
+    color: #f0f6fc;
+  }
+
+  .modCategory {
+    &.performance {
+      background: #0c4a60;
+      color: #7dd3fc;
+      border-color: #0c4a60;
+    }
+
+    &.bugfix {
+      background: #0f5132;
+      color: #75dd99;
+      border-color: #0f5132;
+    }
+
+    &.enhancement {
+      background: #003d82;
+      color: #79c0ff;
+      border-color: #003d82;
+    }
+
+    &.alternative {
+      background: #721c24;
+      color: #ffa8b4;
+      border-color: #721c24;
+    }
+  }
+
+  .modDescription {
+    color: #8b949e;
+  }
+
+  .modReason {
+    color: #e6edf3;
+
+    strong {
+      color: #58a6ff;
+    }
+  }
+
+  .modReplaces {
+    color: #ffa8b4;
+    background: #2d1b1e;
+    border-left-color: #ffa8b4;
+
+    strong {
+      color: #ffa8b4;
+    }
+  }
+
+  .modPlatforms, .modVersions {
+    color: #8b949e;
+    
+    strong {
+      color: #8b949e;
+    }
+  }
+
+  .modLink {
+    background: #1f6feb;
+
+    &:hover {
+      background: #1158c7;
+      box-shadow: 0 2px 4px rgba(31, 111, 235, 0.4);
+    }
+  }
+
+  .moreRecommendations {
+    color: #8b949e;
+    background: #161b22;
+  }
+
+  .noRecommendationsText {
+    color: #8b949e;
+    
+    strong {
+      color: #f0f6fc;
+    }
+  }
+
+  .helpLinks a {
+    color: #58a6ff;
+    border-color: #58a6ff;
+    
+    &:hover {
+      background: #58a6ff;
+      color: #0d1117;
+    }
+  }
+
+  .footer {
+    border-color: #30363d;
+    color: #8b949e;
+
+    a {
+      color: #58a6ff;
+    }
+  }
+}

@@ -1,6 +1,6 @@
 import WidgetsAndMetadata from '../common/components/WidgetsAndMetadata';
 import { useAlwaysOpenMetadataToggle } from '../common/hooks/useMetadataToggle';
-import { ExportCallback } from '../common/logic/export';
+import { ExportCallback, ExportTxtCallback } from '../common/logic/export';
 import { HealthMetadata } from '../proto/spark_pb';
 import Controls from './controls/Controls';
 
@@ -11,13 +11,14 @@ export interface HealthProps {
     data: HealthData;
     metadata: HealthMetadata;
     exportCallback: ExportCallback;
+    exportTxtCallback: ExportTxtCallback;
 }
 
-export default function Health({ metadata, exportCallback }: HealthProps) {
+export default function Health({ metadata, exportCallback, exportTxtCallback }: HealthProps) {
     const metadataToggle = useAlwaysOpenMetadataToggle();
     return (
         <div>
-            <Controls metadata={metadata} exportCallback={exportCallback} />
+            <Controls metadata={metadata} exportCallback={exportCallback} exportTxtCallback={exportTxtCallback} />
             <WidgetsAndMetadata
                 metadata={metadata}
                 metadataToggle={metadataToggle}

@@ -7,7 +7,7 @@ export interface HeaderProps {
     title?: string;
 }
 
-export default function Header({ title = 'spark' }: HeaderProps) {
+export default function Header({ title = 'lorian sparks' }: HeaderProps) {
     return (
         <header className={styles.header}>
             <Link href="/" className="logo">
@@ -24,9 +24,9 @@ export function HomepageHeader() {
             <div>
                 <SparkLogo />
                 <div>
-                    <h1>spark</h1>
+                    <h1>lorian sparks</h1>
                     <div>
-                        A performance profiler for Minecraft
+                        A modified version of Spark profiler for Minecraft
                         <br />
                         clients, servers, and proxies.
                     </div>

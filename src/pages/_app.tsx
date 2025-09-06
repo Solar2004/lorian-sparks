@@ -47,9 +47,9 @@ export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
     const router = useRouter();
     const title =
         {
-            '/download': 'spark | downloads',
-            '/changelog': 'spark | changelog',
-        }[router.pathname] || 'spark';
+            '/download': 'Lorian Sparks | downloads',
+            '/changelog': 'Lorian Sparks | changelog',
+        }[router.pathname] || 'Lorian Sparks - Performance Profiler';
 
     return (
         <>
@@ -63,10 +63,10 @@ export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
                     content="summary"
                     key="twitter-card"
                 />
-                <meta name="twitter:title" content="spark" />
+                <meta name="twitter:title" content="Lorian Sparks" />
                 <meta
                     name="twitter:description"
-                    content="spark is a performance profiler for Minecraft clients, servers, and proxies."
+                    content="Lorian Sparks is a performance profiler for Minecraft clients, servers, and proxies with advanced bot analysis."
                 />
                 <meta
                     name="twitter:image"
@@ -74,10 +74,10 @@ export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
                     key="twitter-image"
                 />
 
-                <meta property="og:title" content="spark" />
+                <meta property="og:title" content="Lorian Sparks" />
                 <meta
                     property="og:description"
-                    content="spark is a performance profiler for Minecraft clients, servers, and proxies."
+                    content="Lorian Sparks is a performance profiler for Minecraft clients, servers, and proxies with advanced bot analysis."
                 />
                 <meta property="og:type" content="product" />
                 <meta

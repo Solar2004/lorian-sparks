@@ -6,7 +6,7 @@ import VersionWarning from '../../common/components/VersionWarning';
 import WidgetsAndMetadata from '../../common/components/WidgetsAndMetadata';
 import useMetadataToggle from '../../common/hooks/useMetadataToggle';
 import useToggle from '../../common/hooks/useToggle';
-import { ExportCallback } from '../../common/logic/export';
+import { ExportCallback, ExportTxtCallback } from '../../common/logic/export';
 import { SamplerMetadata } from '../../proto/spark_pb';
 import useHighlight from '../hooks/useHighlight';
 import useSearchQuery from '../hooks/useSearchQuery';
@@ -35,6 +35,8 @@ import { Tooltip } from 'react-tooltip';
 import useInfoPoints from '../hooks/useInfoPoints';
 import useMappings from '../hooks/useMappings';
 import SettingsMenu from './settings/SettingsMenu';
+import BotAnalysis from './analysis/BotAnalysis';
+import ModRecommendations from './analysis/ModRecommendations';
 
 export interface SamplerProps {
     data: SamplerData;
@@ -42,6 +44,7 @@ export interface SamplerProps {
     metadata: SamplerMetadata;
     setMetadata: (metadata: SamplerMetadata) => void;
     exportCallback: ExportCallback;
+    exportTxtCallback: ExportTxtCallback;
 }
 
 export default function Sampler({
@@ -50,6 +53,7 @@ export default function Sampler({
     metadata,
     setMetadata,
     exportCallback,
+    exportTxtCallback,
 }: SamplerProps) {
     const searchQuery = useSearchQuery(data);
     const highlighted = useHighlight();
@@ -128,6 +132,7 @@ export default function Sampler({
                 metadata={metadata}
                 metadataToggle={metadataToggle}
                 exportCallback={exportCallback}
+                exportTxtCallback={exportTxtCallback}
                 showSettings={showSettings}
                 setShowSettings={setShowSettings}
                 view={view}
@@ -164,6 +169,10 @@ export default function Sampler({
                 metadata={metadata}
                 metadataToggle={metadataToggle}
             />
+
+            <BotAnalysis data={data} />
+            
+            <ModRecommendations data={data} />
 
             {timeSelector.supported && (
                 <Suspense fallback={null}>

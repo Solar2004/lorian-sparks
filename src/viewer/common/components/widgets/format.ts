@@ -15,8 +15,8 @@ export class WidgetFormat {
 
     static colors: { green: Color; yellow: Color; red: Color } = {
         green: '#30E52C',
-        yellow: '#FFB802',
-        red: '#F61515',
+        yellow: '#335fa0',
+        red: '#3a4285',
     };
 }
 

@@ -54,7 +54,8 @@ export async function fetchFromFile(selectedFile: File | undefined) {
     const extension = parseFileExtension(selectedFile.name.split('.').pop());
     const type = getContentType(extension);
     const buf = await readFileAsync(selectedFile);
-    return { type, buf };
+    const exportCallback = createExportCallback(selectedFile.name.split('.')[0], buf, type);
+    return { type, buf, exportCallback };
 }
 
 export function readFileAsync(file: Blob): Promise<ArrayBuffer> {

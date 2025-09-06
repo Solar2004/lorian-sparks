@@ -1,6 +1,5 @@
 import classNames from 'classnames';
 import { useDropzone } from 'react-dropzone';
-
 import styles from '../style/homepage.module.scss';
 
 export interface FilePickerProps {
@@ -9,7 +8,7 @@ export interface FilePickerProps {
 
 export default function FilePicker({ callback }: FilePickerProps) {
     const { getRootProps, getInputProps } = useDropzone({
-        accept: { '': ['.sparkprofile', '.sparkheap'] },
+        accept: { '': ['.sparkprofile', '.sparkheap', '.sparkhealth'] },
         multiple: false,
         onDropAccepted: files => {
             callback(files[0]);
@@ -25,7 +24,7 @@ export default function FilePicker({ callback }: FilePickerProps) {
             <input {...getInputProps()} />
             <p>Drag &amp; drop a profile/heap file here or click to select</p>
             <em>
-                (only <code>.sparkprofile</code> or <code>.sparkheap</code>{' '}
+                (only <code>.sparkprofile</code>, <code>.sparkheap</code> or <code>.sparkhealth</code>{' '}
                 files are accepted)
             </em>
         </div>

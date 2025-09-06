@@ -2,7 +2,7 @@ import { useState } from 'react';
 import styles from '../../style/heap.module.scss';
 import WidgetsAndMetadata from '../common/components/WidgetsAndMetadata';
 import useMetadataToggle from '../common/hooks/useMetadataToggle';
-import { ExportCallback } from '../common/logic/export';
+import { ExportCallback, ExportTxtCallback } from '../common/logic/export';
 import { HeapMetadata } from '../proto/spark_pb';
 import Controls from './controls/Controls';
 import HeapTable from './HeapTable';
@@ -14,9 +14,10 @@ export interface HeapProps {
     data: HeapData;
     metadata: HeapMetadata;
     exportCallback: ExportCallback;
+    exportTxtCallback: ExportTxtCallback;
 }
 
-export default function Heap({ data, metadata, exportCallback }: HeapProps) {
+export default function Heap({ data, metadata, exportCallback, exportTxtCallback }: HeapProps) {
     const metadataToggle = useMetadataToggle();
     const [searchQuery, setSearchQuery] = useState('');
 
@@ -28,6 +29,7 @@ export default function Heap({ data, metadata, exportCallback }: HeapProps) {
                 searchQuery={searchQuery}
                 setSearchQuery={setSearchQuery}
                 exportCallback={exportCallback}
+                exportTxtCallback={exportTxtCallback}
             />
             <WidgetsAndMetadata
                 metadata={metadata}

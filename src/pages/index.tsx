@@ -75,27 +75,26 @@ const AboutSection = () => {
         <section>
             <h2>About</h2>
             <p>
-                spark is a performance profiler, made up of three main
-                components.
+                Lorian Sparks is an enhanced performance profiler with integrated bot analysis, 
+                made up of three main components.
             </p>
             <AboutFeature title="Profiler" icon={faMicrochip}>
-                spark can help to diagnose performance problems and bottlenecks
-                with its built-in profiler.
+                Lorian Sparks can help to diagnose performance problems and bottlenecks
+                with its built-in profiler and integrated bot analysis.
             </AboutFeature>
             <AboutFeature title="Memory Inspection" icon={faMemory}>
-                spark can produce full heap dumps, present a summary of what’s
+                Lorian Sparks can produce full heap dumps, present a summary of what's
                 using the most memory, and monitor GC activity.
             </AboutFeature>
             <AboutFeature title="Health Reporting" icon={faHeartbeat}>
-                spark monitors and reports a number of key metrics which are
+                Lorian Sparks monitors and reports a number of key metrics which are
                 useful for tracking performance over time.
             </AboutFeature>
 
             <p>
-                More information about spark can be found on{' '}
-                <a href="https://github.com/lucko/spark">GitHub</a>, or you can
-                come chat with us on{' '}
-                <a href="https://discord.gg/PAGT2fu">Discord</a>.
+                Lorian Sparks is based on the original{' '}
+                <a href="https://github.com/lucko/spark">spark profiler</a>{' '}
+                with additional bot analysis functionality for comprehensive server optimization.
             </p>
         </section>
     );
@@ -127,7 +126,7 @@ const ViewerSection = ({
     return (
         <section>
             <h2>Viewer</h2>
-            <p>This website is also an online viewer for spark data.</p>
+            <p>This website is also an online viewer for Lorian Sparks data with integrated bot analysis.</p>
             <p>In order to use it:</p>
             <ol>
                 <li>
@@ -153,7 +152,7 @@ const ViewerSection = ({
             <p>
                 You can also generate or export a <code>.sparkprofile</code> or{' '}
                 <code>.sparkheap</code> file and open it by dragging it into the
-                box below.
+                box below to view it with integrated bot analysis.
             </p>
             <FilePicker callback={onFileSelected} />
             <p>

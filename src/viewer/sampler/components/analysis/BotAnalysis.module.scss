@@ -1,0 +1,918 @@
+.analysisContainer {
+  margin: 1rem 0;
+  border: 1px solid #e1e4e8;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #ffffff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background: #f6f8fa;
+  border-bottom: 1px solid #e1e4e8;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+
+  &:hover {
+    background: #f0f3f6;
+  }
+
+  h3 {
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #24292e;
+  }
+}
+
+.headerInfo {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.expandIcon {
+  color: #6a737d;
+  font-size: 0.8rem;
+  transition: transform 0.2s ease;
+}
+
+.loading, .error {
+  color: #6a737d;
+  font-size: 0.9rem;
+  font-style: italic;
+}
+
+.error {
+  color: #d73a49;
+}
+
+.content {
+  padding: 1rem;
+}
+
+.section {
+  margin-bottom: 1.5rem;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  h4 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #24292e;
+    border-bottom: 1px solid #e1e4e8;
+    padding-bottom: 0.25rem;
+  }
+
+  h5 {
+    margin: 0 0 0.5rem 0;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #586069;
+  }
+}
+
+// Rating colors
+.excellent {
+  color: #28a745;
+  font-weight: 600;
+}
+
+.good {
+  color: #28a745;
+}
+
+.fair {
+  color: #335fa0;
+}
+
+.warning {
+  color: #335fa0;
+}
+
+.poor {
+  color: #3a4285;
+}
+
+.critical {
+  color: #d73a49;
+  font-weight: 600;
+}
+
+.info {
+  color: #0366d6;
+}
+
+// Metrics grid
+.metricsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 0.75rem;
+}
+
+.metric {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem;
+  background: #f6f8fa;
+  border-radius: 4px;
+  font-size: 0.85rem;
+
+  .label {
+    color: #586069;
+    font-weight: 500;
+  }
+}
+
+// Alert list
+.alertList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  li {
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+    background: #f0f4ff;
+    border: 1px solid #c1d2ff;
+    border-radius: 4px;
+    font-size: 0.9rem;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+// Configuration issues
+.configIssues {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.configIssue {
+  padding: 0.75rem;
+  border-radius: 6px;
+  font-size: 0.85rem;
+
+  &.critical {
+    background: #f0f4ff;
+    border: 1px solid #c1d2ff;
+  }
+
+  &.warning {
+    background: #f5f7ff;
+    border: 1px solid #d6e0ff;
+  }
+
+  &.info {
+    background: #f0f8ff;
+    border: 1px solid #bee5eb;
+  }
+}
+
+.configHeader {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.configFile {
+  color: #0366d6;
+  font-family: 'SFMono-Regular', 'Consolas', 'Liberation Mono', 'Menlo', monospace;
+  font-size: 0.8rem;
+}
+
+.configSetting {
+  color: #6a737d;
+  font-family: 'SFMono-Regular', 'Consolas', 'Liberation Mono', 'Menlo', monospace;
+  font-size: 0.8rem;
+}
+
+.configValues {
+  margin-bottom: 0.5rem;
+  font-size: 0.8rem;
+  color: #586069;
+
+  code {
+    background: #f6f8fa;
+    padding: 0.1rem 0.3rem;
+    border-radius: 3px;
+    font-family: 'SFMono-Regular', 'Consolas', 'Liberation Mono', 'Menlo', monospace;
+    font-size: 0.85em;
+  }
+}
+
+.configDescription {
+  color: #24292e;
+  line-height: 1.4;
+}
+
+// Plugin issues
+.pluginIssues {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.pluginIssue {
+  padding: 0.75rem;
+  border-radius: 6px;
+  font-size: 0.85rem;
+
+  &.critical {
+    background: #f0f4ff;
+    border: 1px solid #c1d2ff;
+  }
+
+  &.warning {
+    background: #f5f7ff;
+    border: 1px solid #d6e0ff;
+  }
+
+  &.info {
+    background: #f0f8ff;
+    border: 1px solid #bee5eb;
+  }
+}
+
+.pluginName {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #24292e;
+  font-family: 'SFMono-Regular', 'Consolas', 'Liberation Mono', 'Menlo', monospace;
+}
+
+.pluginDescription {
+  margin-bottom: 0.5rem;
+  line-height: 1.4;
+  color: #586069;
+}
+
+.pluginRecommendation {
+  font-size: 0.8rem;
+  color: #0366d6;
+  font-style: italic;
+}
+
+// JVM section
+.jvmGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.jvmSection {
+  padding: 0.75rem;
+  background: #f6f8fa;
+  border-radius: 6px;
+}
+
+.jvmInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  font-size: 0.85rem;
+
+  div {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+.jvmIssues {
+  padding: 0.75rem;
+  background: #f0f4ff;
+  border: 1px solid #fed7d7;
+  border-radius: 6px;
+
+  h5 {
+    margin-top: 0;
+  }
+
+  ul {
+    margin: 0;
+    padding-left: 1.2rem;
+
+    li {
+      margin-bottom: 0.25rem;
+      font-size: 0.85rem;
+    }
+  }
+}
+
+// Recommendations
+.recommendations {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  li {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #e1e4e8;
+    font-size: 0.9rem;
+    line-height: 1.4;
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    &:before {
+      content: '💡 ';
+      margin-right: 0.5rem;
+    }
+  }
+}
+
+// Mod Recommendations
+.modRecommendations {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.modRecommendation {
+  padding: 1rem;
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+}
+
+.modHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 0.75rem;
+  gap: 1rem;
+}
+
+.modName {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #24292e;
+  font-family: 'SFMono-Regular', 'Consolas', 'Liberation Mono', 'Menlo', monospace;
+}
+
+.modCategory {
+  padding: 0.25rem 0.5rem;
+  border-radius: 12px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+
+  &.performance {
+    background: #d1ecf1;
+    color: #0c5460;
+    border: 1px solid #bee5eb;
+  }
+
+  &.bugfix {
+    background: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+  }
+
+  &.enhancement {
+    background: #cce5ff;
+    color: #004085;
+    border: 1px solid #b8daff;
+  }
+
+  &.alternative {
+    background: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+  }
+}
+
+.modDescription {
+  font-size: 0.9rem;
+  color: #586069;
+  line-height: 1.4;
+  margin-bottom: 0.75rem;
+}
+
+.modReason {
+  font-size: 0.85rem;
+  color: #24292e;
+  margin-bottom: 0.5rem;
+  line-height: 1.4;
+
+  strong {
+    color: #0366d6;
+  }
+}
+
+.modReplaces {
+  font-size: 0.8rem;
+  color: #d73a49;
+  margin-bottom: 0.75rem;
+
+  strong {
+    color: #d73a49;
+  }
+}
+
+.modLinks {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.modLink {
+  padding: 0.4rem 0.8rem;
+  background: #0366d6;
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  transition: background-color 0.2s ease;
+
+  &:hover {
+    background: #0256cc;
+    text-decoration: none;
+  }
+
+  &:not(:last-child) {
+    margin-right: 0.25rem;
+  }
+}
+
+.modPlatforms {
+  font-size: 0.75rem;
+  color: #6a737d;
+  font-style: italic;
+
+  strong {
+    color: #586069;
+    font-style: normal;
+  }
+}
+
+.moreModsMessage {
+  text-align: center;
+  color: #6a737d;
+  font-style: italic;
+  font-size: 0.9rem;
+  padding: 0.5rem;
+}
+
+.moreInfo {
+  color: #6a737d;
+  font-style: italic;
+  font-size: 0.85rem !important;
+
+  &:before {
+    content: '📋 ' !important;
+  }
+}
+
+.footer {
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e1e4e8;
+  color: #6a737d;
+  font-size: 0.8rem;
+  line-height: 1.4;
+
+  a {
+    color: #0366d6;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+// New detailed sections
+.subsection {
+  margin-bottom: 1rem;
+  padding: 0.75rem;
+  background: #f8f9fa;
+  border-radius: 6px;
+
+  h5 {
+    margin: 0 0 0.75rem 0;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #495057;
+    border-bottom: 1px solid #dee2e6;
+    padding-bottom: 0.25rem;
+  }
+
+  h6 {
+    margin: 0.5rem 0 0.25rem 0;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #6c757d;
+  }
+}
+
+.detailGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 0.5rem;
+}
+
+.detailItem {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.4rem 0.6rem;
+  background: #ffffff;
+  border: 1px solid #e9ecef;
+  border-radius: 4px;
+  font-size: 0.8rem;
+
+  span:first-child {
+    color: #6c757d;
+    font-weight: 500;
+  }
+
+  span:last-child {
+    font-weight: 600;
+  }
+}
+
+// Entity breakdown
+.entityBreakdown {
+  margin-top: 0.75rem;
+}
+
+.entityList {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 0.4rem;
+  margin-top: 0.5rem;
+}
+
+.entityItem {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.3rem 0.5rem;
+  background: #ffffff;
+  border: 1px solid #e9ecef;
+  border-radius: 3px;
+  font-size: 0.75rem;
+}
+
+.entityType {
+  color: #495057;
+  font-family: 'SFMono-Regular', 'Consolas', 'Liberation Mono', 'Menlo', monospace;
+  font-weight: 500;
+}
+
+.entityCount {
+  color: #6c757d;
+  font-weight: 600;
+}
+
+// Lag analysis
+.lagAnalysis {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.lagMetric {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.6rem;
+  background: #f8f9fa;
+  border-radius: 6px;
+  border: 1px solid #e9ecef;
+  font-size: 0.9rem;
+
+  .label {
+    color: #495057;
+    font-weight: 500;
+  }
+}
+
+// Sampling grid
+.samplingGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0.75rem;
+}
+
+// System resources
+.systemGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1rem;
+}
+
+.memoryPressure {
+  color: #6c757d;
+  font-size: 0.75rem;
+  font-weight: 600;
+  margin-top: 0.25rem;
+}
+
+.systemSection {
+  padding: 0.75rem;
+  background: #f8f9fa;
+  border-radius: 6px;
+  border: 1px solid #e9ecef;
+
+  h5 {
+    margin: 0 0 0.5rem 0;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #495057;
+  }
+}
+
+.systemInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  font-size: 0.8rem;
+
+  div {
+    color: #6c757d;
+    line-height: 1.3;
+  }
+}
+
+// Responsive design
+@media (max-width: 768px) {
+  .metricsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .jvmGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .systemGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .detailGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .entityList {
+    grid-template-columns: 1fr;
+  }
+
+  .samplingGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .configHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+  }
+
+  .metric {
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .detailItem {
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  .lagMetric {
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+}
+
+// Dark mode support
+@media (prefers-color-scheme: dark) {
+  .analysisContainer {
+    background: #0d1117;
+    border-color: #30363d;
+  }
+
+  .header {
+    background: #161b22;
+    border-color: #30363d;
+
+    &:hover {
+      background: #21262d;
+    }
+
+    h3 {
+      color: #f0f6fc;
+    }
+  }
+
+  .content {
+    color: #e6edf3;
+  }
+
+  .section h4 {
+    color: #f0f6fc;
+    border-color: #30363d;
+  }
+
+  .metric {
+    background: #161b22;
+  }
+
+  .configIssue, .pluginIssue {
+    &.critical {
+      background: #2d1b1e;
+      border-color: #f85149;
+    }
+
+    &.warning {
+      background: #2d2617;
+      border-color: #d29922;
+    }
+
+    &.info {
+      background: #0c2d6b;
+      border-color: #1f6feb;
+    }
+  }
+
+  .jvmSection {
+    background: #161b22;
+  }
+
+  .jvmIssues {
+    background: #2d1b1e;
+    border-color: #f85149;
+  }
+
+  .footer {
+    border-color: #30363d;
+    color: #8b949e;
+
+    a {
+      color: #58a6ff;
+    }
+  }
+
+  // Dark mode for new sections
+  .subsection {
+    background: #161b22;
+
+    h5 {
+      color: #f0f6fc;
+      border-color: #30363d;
+    }
+
+    h6 {
+      color: #8b949e;
+    }
+  }
+
+  .detailItem {
+    background: #0d1117;
+    border-color: #30363d;
+
+    span:first-child {
+      color: #8b949e;
+    }
+
+    span:last-child {
+      color: #e6edf3;
+    }
+  }
+
+  .entityItem {
+    background: #0d1117;
+    border-color: #30363d;
+  }
+
+  .entityType {
+    color: #e6edf3;
+  }
+
+  .entityCount {
+    color: #8b949e;
+  }
+
+  .systemSection {
+    background: #161b22;
+    border-color: #30363d;
+
+    h5 {
+      color: #f0f6fc;
+    }
+  }
+
+  .systemInfo div {
+    color: #8b949e;
+  }
+
+  .lagMetric {
+    background: #161b22;
+    border-color: #30363d;
+
+    .label {
+      color: #8b949e;
+    }
+  }
+
+  .memoryPressure {
+    color: #8b949e;
+  }
+
+  // Dark mode for mod recommendations
+  .modRecommendation {
+    background: #161b22;
+    border-color: #30363d;
+  }
+
+  .modName {
+    color: #f0f6fc;
+  }
+
+  .modCategory {
+    &.performance {
+      background: #0c4a60;
+      color: #7dd3fc;
+      border-color: #0c4a60;
+    }
+
+    &.bugfix {
+      background: #0f5132;
+      color: #75dd99;
+      border-color: #0f5132;
+    }
+
+    &.enhancement {
+      background: #003d82;
+      color: #79c0ff;
+      border-color: #003d82;
+    }
+
+    &.alternative {
+      background: #721c24;
+      color: #ffa8b4;
+      border-color: #721c24;
+    }
+  }
+
+  .modDescription {
+    color: #8b949e;
+  }
+
+  .modReason {
+    color: #e6edf3;
+
+    strong {
+      color: #58a6ff;
+    }
+  }
+
+  .modReplaces {
+    color: #ffa8b4;
+
+    strong {
+      color: #ffa8b4;
+    }
+  }
+
+  .modLink {
+    background: #1f6feb;
+
+    &:hover {
+      background: #1158c7;
+    }
+  }
+
+  .modPlatforms {
+    color: #8b949e;
+
+    strong {
+      color: #8b949e;
+    }
+  }
+
+  .moreModsMessage {
+    color: #8b949e;
+  }
+}

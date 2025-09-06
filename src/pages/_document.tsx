@@ -8,21 +8,25 @@ export default function Document() {
         <Html lang="en">
             <Head>
                 <meta charSet="utf-8" />
-                <meta name="theme-color" content="#FFC93A" />
+                <meta name="theme-color" content="#335fa0" />
                 <meta
                     name="description"
-                    content="spark is a performance profiler for Minecraft clients, servers, and proxies."
+                    content="Lorian Sparks is a performance profiler for Minecraft clients, servers, and proxies with integrated bot analysis and advanced optimization recommendations."
                 />
-                <link
-                    href="/assets/logo-inverted-512.png"
-                    rel="shortcut icon"
-                    sizes="512x512"
-                    type="image/png"
-                />
-                <link
-                    rel="apple-touch-icon"
-                    href="/assets/logo-inverted-160.png"
-                />
+                {/* Favicon configuration */}
+                <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+                <link rel="icon" type="image/png" sizes="32x32" href="/assets/logo-128.png" />
+                <link rel="icon" type="image/png" sizes="16x16" href="/assets/logo-128.png" />
+                <link rel="icon" type="image/png" sizes="512x512" href="/assets/logo-512.png" />
+                
+                {/* Apple touch icon */}
+                <link rel="apple-touch-icon" sizes="180x180" href="/assets/logo-160.png" />
+                
+                {/* Additional favicons for different contexts */}
+                <link rel="shortcut icon" href="/favicon.ico" />
+                
+                {/* Web App Manifest */}
+                <link rel="manifest" href="/manifest.json" />
 
                 {host === 'spark.lucko.me' && (
                     <script
