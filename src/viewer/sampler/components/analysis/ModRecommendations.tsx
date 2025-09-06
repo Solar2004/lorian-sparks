@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react'; 
 import styles from './ModRecommendations.module.scss';
 import { SparkAnalysisEngine, AnalysisResult } from '../../../common/logic/sparkAnalysisEngine';
 import { ModRecommendation } from '../../../common/logic/modRecommendations';
@@ -13,58 +13,6 @@ export default function ModRecommendations({ data }: ModRecommendationsProps) {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
     const [expanded, setExpanded] = useState(false);
-
-    useEffect(() => {
-        const generateRecommendations = async () => {
-            try {
-                setLoading(true);
-                setError(null);
-                
-                const engine = new SparkAnalysisEngine(data);
-                const result = await engine.performFullAnalysis();
-                
-                // Filtrar solo recomendaciones de mods (no plugins) y evitar duplicados
-                const filteredRecommendations = filterModRecommendations(result.modRecommendations, data);
-                setRecommendations(filteredRecommendations);
-            } catch (err) {
-                console.error('Error generating mod recommendations:', err);
-                setError('Failed to generate mod recommendations');
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        generateRecommendations();
-    }, [data]);
-
-    const filterModRecommendations = (modRecommendations: ModRecommendation[], serverData: SamplerData): ModRecommendation[] => {
-        if (!modRecommendations || modRecommendations.length === 0) {
-            return [];
-        }
-
-        // Obtener lista de mods/plugins ya instalados
-        const installedMods = getInstalledMods(serverData);
-        
-        // Filtrar recomendaciones
-        return modRecommendations.filter(mod => {
-            // 1. Evitar recomendar plugins (solo queremos mods)
-            if (isPluginRecommendation(mod)) {
-                return false;
-            }
-            
-            // 2. Evitar recomendar mods que ya están instalados
-            if (isModAlreadyInstalled(mod, installedMods)) {
-                return false;
-            }
-            
-            // 3. Solo mostrar mods para plataformas modded (Forge, Fabric, etc.)
-            if (!isModdedPlatformRecommendation(mod, serverData)) {
-                return false;
-            }
-            
-            return true;
-        });
-    };
 
     const getInstalledMods = (serverData: SamplerData): string[] => {
         if (!serverData.metadata?.sources) {
@@ -134,6 +82,58 @@ export default function ModRecommendations({ data }: ModRecommendationsProps) {
         }
         return 'unknown';
     };
+
+    const filterModRecommendations = useCallback((modRecommendations: ModRecommendation[], serverData: SamplerData): ModRecommendation[] => {
+        if (!modRecommendations || modRecommendations.length === 0) {
+            return [];
+        }
+
+        // Obtener lista de mods/plugins ya instalados
+        const installedMods = getInstalledMods(serverData);
+        
+        // Filtrar recomendaciones
+        return modRecommendations.filter(mod => {
+            // 1. Evitar recomendar plugins (solo queremos mods)
+            if (isPluginRecommendation(mod)) {
+                return false;
+            }
+            
+            // 2. Evitar recomendar mods que ya están instalados
+            if (isModAlreadyInstalled(mod, installedMods)) {
+                return false;
+            }
+            
+            // 3. Solo mostrar mods para plataformas modded (Forge, Fabric, etc.)
+            if (!isModdedPlatformRecommendation(mod, serverData)) {
+                return false;
+            }
+            
+            return true;
+        });
+    }, []);
+
+    useEffect(() => {
+        const generateRecommendations = async () => {
+            try {
+                setLoading(true);
+                setError(null);
+                
+                const engine = new SparkAnalysisEngine(data);
+                const result = await engine.performFullAnalysis();
+                
+                // Filtrar solo recomendaciones de mods (no plugins) y evitar duplicados
+                const filteredRecommendations = filterModRecommendations(result.modRecommendations, data);
+                setRecommendations(filteredRecommendations);
+            } catch (err) {
+                console.error('Error generating mod recommendations:', err);
+                setError('Failed to generate mod recommendations');
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        generateRecommendations();
+    }, [data, filterModRecommendations]);
 
     if (loading) {
         return (

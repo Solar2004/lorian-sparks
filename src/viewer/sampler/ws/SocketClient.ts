@@ -74,8 +74,8 @@ export class SocketClient {
         const verified = await crypto.subtle.verify(
             'RSASSA-PKCS1-v1_5',
             this.remotePublicKey,
-            signature,
-            message
+            new Uint8Array(signature),
+            new Uint8Array(message)
         );
 
         if (!verified) {
@@ -96,7 +96,7 @@ export class SocketClient {
             await crypto.subtle.sign(
                 'RSASSA-PKCS1-v1_5',
                 this.localPrivateKey,
-                message
+                new Uint8Array(message)
             )
         );
 

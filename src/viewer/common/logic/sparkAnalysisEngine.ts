@@ -803,7 +803,7 @@ export class SparkAnalysisEngine {
         // Si TPS es bajo o MSPT es alto, recomendar mods de performance
         if (this.data.metadata?.platformStatistics?.tps) {
             const tps = this.data.metadata.platformStatistics.tps;
-            const avgTps = (tps.last1m + tps.last5m + tps.last15m) / 3;
+            const avgTps = (tps.last1M + tps.last5M + tps.last15M) / 3;
             if (avgTps < 19) {
                 detectedIssues.push('performance_lag');
             }

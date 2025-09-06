@@ -29,7 +29,7 @@ export class LocalSocketClient {
         listener: LocalSocketListener
     ) {
         const keys = (await loadKeys()) || (await generateKeys());
-        const remotePublicKey = await importPublicKey(channel.publicKey, [
+        const remotePublicKey = await importPublicKey(new Uint8Array(channel.publicKey), [
             'verify',
         ]);
 

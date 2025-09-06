@@ -83,7 +83,7 @@ const AboutSection = () => {
                 with its built-in profiler and integrated bot analysis.
             </AboutFeature>
             <AboutFeature title="Memory Inspection" icon={faMemory}>
-                Lorian Sparks can produce full heap dumps, present a summary of what's
+                Lorian Sparks can produce full heap dumps, present a summary of what&apos;s
                 using the most memory, and monitor GC activity.
             </AboutFeature>
             <AboutFeature title="Health Reporting" icon={faHeartbeat}>
